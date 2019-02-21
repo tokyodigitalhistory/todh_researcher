@@ -22,8 +22,9 @@ $ vi secret_info.py # 中身を埋める
 $ python3 search_and_post.py
 ```
 
-`slack_channel_id`, `slack_direct_message_id` はSlackAPIのgroup.list, 
-channel.list, lm.list, lm.historyなどを使って頑張って取る。 
+`slack_channel_id`, `slack_direct_message_id` は~~SlackAPIのgroup.list, 
+channel.list, lm.list, lm.historyなどを使って頑張って取る。~~
+`get_slack_info.py` を使って取得する。 
 
 cronで動かすには、ラッパースクリプトを書く。
 なんかいい方法があるかもしれないが、とりあえずこれで動かしている。
