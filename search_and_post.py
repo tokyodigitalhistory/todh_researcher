@@ -1,7 +1,8 @@
 from twitter import search_tweets
 from slack import read_last_id, post_message
-from const import post_message_format, result_header_format, query_strings
+from const import post_message_template, result_header_format, query_strings
 from secret_info import slack_channel_id, slack_direct_message_id
+from jinja2 import Template
 
 
 def search_tweets_by_query(query, since_id):
@@ -17,12 +18,8 @@ def post_tweets_to_slack(tweets):
     """
     max_id = 0
     for tw in tweets:
-        post_text = post_message_format.format(
-            tweet_id=tw.id,
-            text=tw.text,
-            screen_name=tw.user.screen_name,
-            username=tw.user.name
-        )
+        tw_template = Template(post_message_template)
+        post_text = tw_template.render(tweet=tw)
         post_message(post_text, slack_channel_id)
         if tw.id > max_id:
             max_id = tw.id
