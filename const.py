@@ -1,9 +1,11 @@
 post_message_format = '''\
-https://twitter.com/i/web/status/{tweet_id}
----
+- https://twitter.com/i/web/status/{tweet_id}
+
+```
 {text}
----
-by {username} (@{screen_name})\
+```
+
+                        _by {username} (@{screen_name})_\
 '''
 
 result_header_format = '=== 「{query}」 での検索結果 ==='
