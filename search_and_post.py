@@ -10,6 +10,11 @@ def search_tweets_by_query(query, since_id):
 
 
 def post_tweets_to_slack(tweets):
+    """
+    :param tweets: status
+    :return: the id of the latest tweet among the tweets
+    :rtype: int
+    """
     max_id = 0
     for tw in tweets:
         post_text = post_message_format.format(
