@@ -5,14 +5,10 @@ from secret_info import slack_channel_id, slack_direct_message_id
 from jinja2 import Template
 
 
-def search_tweets_by_query(query, since_id):
-    found_tweets = search_tweets(query=query,since_id=since_id)
-    return found_tweets
-
-
 def post_tweets_to_slack(tweets):
     """
-    :param tweets: status
+    Search tweets and post them to a Slack channel
+    :param Status tweets: Status object (tweet) to post to Slack
     :return: the id of the latest tweet among the tweets
     :rtype: int
     """
@@ -21,6 +17,7 @@ def post_tweets_to_slack(tweets):
         tw_template = Template(post_message_template)
         post_text = tw_template.render(tweet=tw)
         post_message(post_text, slack_channel_id)
+        # Update max_id when the tweet has larger ID than current one.
         if tw.id > max_id:
             max_id = tw.id
     return max_id
@@ -28,19 +25,24 @@ def post_tweets_to_slack(tweets):
 
 def main():
     since_id = read_last_id()
+    # If since_id can not be convertible to int, refresh it.
     if not since_id.isdigit():
-        since_id = 1
-    last_id = int(since_id)
+        since_id = '1'
+    # Initialize largest_id which will be new since_id
+    largest_id = int(since_id)
 
     for q in query_strings:
         tweets = search_tweets(q, since_id)
         if len(tweets) > 0:
+            # Post a header
             post_message(result_header_format.format(query=q), slack_channel_id)
             max_id = post_tweets_to_slack(tweets)
-            if max_id > last_id:
-                last_id = max_id
+            # Update largest_id when one of tweets has larger ID than the
+            # current.
+            if max_id > largest_id:
+                largest_id = max_id
 
-    post_message(last_id, slack_direct_message_id)
+    post_message(largest_id, slack_direct_message_id)
 
 
 if __name__ == '__main__':

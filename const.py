@@ -21,3 +21,7 @@ query_strings = (
     '"digital history"',
     '#DigHist'
 )
+
+excluded_patterns = [
+    '^RT @',    # Retweeted statuses
+]

@@ -7,7 +7,10 @@ sc = SlackClient(slack_token)
 
 def read_last_id():
     """
-    :return: The text posted by administrator to the bot user.
+    Read the newest tweet which was already posted to use it since_id.
+    NOTE: "The newest" means the largest tweet ID.
+    Not last posted tweet into a Slack channel.
+    :return: The last text posted by the administrator to the bot user.
     :rtype: str
     """
 
@@ -21,8 +24,9 @@ def read_last_id():
 
 def post_message(text, channel_id):
     """
-    :param text: str
-    :param channel_id: str
+    Post a message to a Slack channel
+    :param str text: Text to post
+    :param str channel_id: Id of channel to post
     :return: None
     """
     sc.api_call(
