@@ -1,10 +1,8 @@
 post_message_format = '''\
-- https://twitter.com/i/web/status/{tweet_id}
-
 ```
 {text}
 ```
-
+https://twitter.com/i/web/status/{tweet_id}
                         _by {username} (@{screen_name})_\
 '''
 
