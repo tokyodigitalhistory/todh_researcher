@@ -3,7 +3,7 @@ post_message_template = '''\
 ```
 {{tweet.text}}
 ```
-https://twitter.com/i/web/status/{{tweet.id}}
+https://twitter.com/{{tweet.user.screen_name}}/status/{{tweet.id}}
                         _by {{tweet.user.name}} (@{{tweet.user.screen_name}})_
                         ☆ {{tweet.favorite_count}}, RT {{tweet.retweet_count}}
                         lang: {{tweet.lang}}\
