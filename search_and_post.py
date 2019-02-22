@@ -24,12 +24,13 @@ def post_tweets_to_slack(tweets):
 
 
 def main():
-    since_id = read_last_id()
-    # If since_id can not be convertible to int, refresh it.
-    if not since_id.isdigit():
-        since_id = '1'
+    since_id_str = read_last_id()
+    # Initialize since_id
+    since_id = 1
+    if since_id_str.isdigit():
+        since_id = int(since_id)
     # Initialize largest_id which will be new since_id
-    largest_id = int(since_id)
+    largest_id = since_id
 
     for q in query_strings:
         tweets = search_tweets(q, since_id)
