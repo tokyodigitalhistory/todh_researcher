@@ -28,10 +28,9 @@ def main():
     # Initialize since_id
     since_id = 1
     if since_id_str.isdigit():
-        since_id = int(since_id)
+        since_id = int(since_id_str)
     # Initialize largest_id which will be new since_id
     largest_id = since_id
-
     for q in query_strings:
         tweets = search_tweets(q, since_id)
         if len(tweets) > 0:
