@@ -9,7 +9,9 @@ https://twitter.com/{{tweet.user.screen_name}}/status/{{tweet.id}}
                         lang: {{tweet.lang}}\
 '''
 
-result_header_format = '=== 「{query}」 での検索結果 ==='
+result_header_template = '''\
+=== `{{query}}` での検索結果({{num_tweets}}件) ===\
+'''
 
 # Queries
 query_strings = (
