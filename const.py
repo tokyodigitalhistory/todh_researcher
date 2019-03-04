@@ -15,8 +15,6 @@ result_header_template = '''\
 
 # Queries
 query_strings = (
-    '"Digital Humanities"',
-    '"Digital Humanity"',
     '"デジタル歴史学"',
     '"デジタルヒストリ"',
     '"デジタル・ヒストリ"',
